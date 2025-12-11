@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Tool Hub - All-in-One Image Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #1E1E2F;
+            --text-color: #EAEAEA;
+            --header-bg: #2B2D42;
+            --accent-color: #FFD700;
+            --accent-hover: #E6C200;
+            --card-bg: #3A3D5B;
+            --shadow-color: rgba(255, 215, 0, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 30px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--header-bg);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, var(--accent-color), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px var(--shadow-color);
+        }
+
+        .tagline {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 40px 0 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 12px 25px var(--shadow-color);
+        }
+
+        .tool-card:hover .tool-icon {
+            color: var(--bg-color);
+        }
+
+        .tool-card:hover .tool-description {
+            color: #333;
+        }
+
+        .tool-icon {
+            font-size: 2.8rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .tool-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .tool-description {
+            color: #ccc;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            transition: color 0.3s ease;
+        }
+
+        /* Button Styling */
+        .tool-btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tool-btn:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(230, 194, 0, 0.3);
+        }
+
+        .tool-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .intro h2 {
+                font-size: 1.8rem;
+            }
+
+            .tool-card {
+                padding: 20px;
+            }
+
+            .tool-card h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .logo-icon {
+                font-size: 2rem;
+            }
+
+            .intro {
+                padding: 30px 0 20px;
+            }
+
+            .intro h2 {
+                font-size: 1.5rem;
+            }
+
+            .intro p {
+                font-size: 1rem;
+            }
+
+            .tool-card {
+                padding: 18px;
+            }
+
+            .tool-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <i class="fas fa-tools logo-icon"></i>
+                <h1>Multi Tool Hub</h1>
+            </div>
+            <p class="tagline">All-in-one image processing tools for professionals and enthusiasts</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>Powerful Image Tools at Your Fingertips</h2>
+            <p>Transform, convert, and optimize your images with our comprehensive suite of free online tools. No installation required, completely browser-based.</p>
+        </section>
+
+        <section class="tools-grid">
+            <!-- Tool 1: Image Compressor -->
+            <article class="tool-card">
+                <i class="fas fa-compress-alt tool-icon"></i>
+                <h3>Image Compressor</h3>
+                <p class="tool-description">Reduce image file sizes without noticeable quality loss. Perfect for optimizing web images, saving storage, and faster loading times.</p>
+                <button class="tool-btn" data-tool="Image Compressor">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+
+            <!-- Tool 2: Image Resizer -->
+            <article class="tool-card">
+                <i class="fas fa-expand-alt tool-icon"></i>
+                <h3>Image Resizer</h3>
+                <p class="tool-description">Resize images to exact dimensions while maintaining aspect ratio. Supports bulk resizing for multiple images at once.</p>
+                <button class="tool-btn" data-tool="Image Resizer">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+
+            <!-- Tool 3: JPG to PNG Converter -->
+            <article class="tool-card">
+                <i class="fas fa-exchange-alt tool-icon"></i>
+                <h3>JPG to PNG Converter</h3>
+                <p class="tool-description">Convert JPG images to PNG format with transparency support. Preserve image quality while changing format.</p>
+                <button class="tool-btn" data-tool="JPG to PNG Converter">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+
+            <!-- Tool 4: Image to PDF -->
+            <article class="tool-card">
+                <i class="fas fa-file-pdf tool-icon"></i>
+                <h3>Image to PDF</h3>
+                <p class="tool-description">Convert one or multiple images into a single PDF document. Adjust page size, orientation, and image quality.</p>
+                <button class="tool-btn" data-tool="Image to PDF">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+
+            <!-- Tool 5: Image to Word -->
+            <article class="tool-card">
+                <i class="fas fa-file-word tool-icon"></i>
+                <h3>Image to Word Tool</h3>
+                <p class="tool-description">Extract text from images and convert to editable Word documents. Powered by advanced OCR technology.</p>
+                <button class="tool-btn" data-tool="Image to Word Tool">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+
+            <!-- Tool 6: Image Cropper -->
+            <article class="tool-card">
+                <i class="fas fa-crop-alt tool-icon"></i>
+                <h3>Image Cropper</h3>
+                <p class="tool-description">Crop images to remove unwanted areas or focus on specific parts. Supports custom aspect ratios and freehand cropping.</p>
+                <button class="tool-btn" data-tool="Image Cropper">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+
+            <!-- Tool 7: Image Rotator -->
+            <article class="tool-card">
+                <i class="fas fa-redo-alt tool-icon"></i>
+                <h3>Image Rotator</h3>
+                <p class="tool-description">Rotate and flip images in any direction. Fix incorrectly oriented photos with precise rotation controls.</p>
+                <button class="tool-btn" data-tool="Image Rotator">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+
+            <!-- Tool 8: Image Watermark -->
+            <article class="tool-card">
+                <i class="fas fa-water tool-icon"></i>
+                <h3>Image Watermark</h3>
+                <p class="tool-description">Add text or logo watermarks to protect your images. Customize position, opacity, font, and size.</p>
+                <button class="tool-btn" data-tool="Image Watermark">
+                    <span>Use Tool</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </article>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>&copy; 2023 Multi Tool Hub. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <script>
+        // Add interactivity to tool buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const toolButtons = document.querySelectorAll('.tool-btn');
+            
+            toolButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const toolName = this.getAttribute('data-tool');
+                    alert(`Redirecting to ${toolName}...\n\n(This is a demo. In a real application, you would be taken to the tool interface.)`);
+                    
+                    // Optional: Add visual feedback on click
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+            
+            // Add hover effect for tool cards
+            const toolCards = document.querySelectorAll('.tool-card');
+            toolCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '';
+                });
+            });
+            
+            // Console log when page loads
+            console.log('Multi Tool Hub loaded successfully!');
+        });
+    </script>
+</body>
+</html>
